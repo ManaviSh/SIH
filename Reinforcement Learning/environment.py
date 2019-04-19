@@ -37,7 +37,7 @@ class Environment:
         return self.rpm, reward
 
     def reset(self):
-        self.rpm = 0  # Reset state to zero, the beginning of dungeon
+        self.rpm = 0  # Reset state to zero, the beginning of trip
         return self.rpm
 ##o= Environment(0,0,100)
 
