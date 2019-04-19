@@ -1,5 +1,11 @@
+'''
+    Random testing of making the agent learn a best rpm based on hard coded rewards. Even  with this essentially the problem was that even
+    after destined iterations and satisfactory performance, the updated Q-table ony had all 0 as state action values for when the action is 
+    current off
+'''
+
 import random
-from sa import *
+from sa import * #import action
 class Environment:
     def __init__(self, rpm = 0, min_rpm = 0, max_rpm = 4):
         self.rpm = rpm
