@@ -11,7 +11,7 @@ class car:
         self.exploration_delta = 0.001# Shift from exploration to explotation
 
     def get_next_action(self, rpm):
-        if random.random() > self.exploration_rate: # Explore (gamble) or exploit (greedy)
+        if random.random() > self.exploration_rate: # Explore or exploit
             return self.greedy_action(rpm)
         else:
             return self.random_action()
@@ -41,6 +41,6 @@ class car:
         new_value = old_value + self.learning_rate * (reward + self.discount * future_reward - old_value)
         self.q_table[action][old_rpm] = new_value
 
-        # Finally shift our exploration_rate toward zero (less gambling)
+        # Finally shift our exploration_rate toward zero
         if self.exploration_rate > 0:
             self.exploration_rate -= self.exploration_delta
