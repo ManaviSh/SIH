@@ -22,7 +22,9 @@ for i in mylist:
     if(i>=0.5):
         theta1.append('state4')
         
-print(pd.crosstab(pd.Series(theta1[1:],name='Tomorrow'),
-            pd.Series(theta1[:-1],name='Today'),normalize=1).values)
+pro_trans=pd.crosstab(pd.Series(theta1[1:],name='Tomorrow'),
+            pd.Series(theta1[:-1],name='Today'),normalize=1).values
+
+print(pro_trans)
 
         
