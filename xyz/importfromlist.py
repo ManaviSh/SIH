@@ -32,7 +32,7 @@ for i in mylist:
         theta.append(3)
 #print(theta)
 curr_state=list(zip(time,theta))
-next_state=list(zip(time,theta[1:]))
+next_states=list(zip(time,theta[1:]))
 #print(next_state)
 #pro_trans=pd.crosstab(pd.Series(t[1:],name='Tomorrow'),
 #            pd.Series(t[:-1],name='Today'),normalize=1)
