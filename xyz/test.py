@@ -6,7 +6,7 @@ Created on Thu Apr 25 00:02:56 2019
 """
 import numpy as np
 import random
-from importfromlist import next_state
+from importfromlist import next_states
 from get_rewards import final_rewards
 from IPython.display import clear_output
 alpha = 0.1
@@ -24,7 +24,6 @@ q_table = np.zeros([4, 4])
 #               [1,-10,0,1],
 #               [1,-10,0,1]]     
 for i in range(0,max_epochs):
-    for (i,j) in next_state:
         state = np.random.randint(0,ns)
         done = False
         epochs, penalties, reward, = 0, 0, 0
@@ -35,8 +34,9 @@ for i in range(0,max_epochs):
             else:
                 action = np.argmax(q_table[state]) # Exploit learned values
     
-
-            next_state=j
+            for a in next_states:
+                if(a[0]==i):
+                    next_state=a[1]
             reward=final_rewards[state][action]
         
             old_value = q_table[state, action]
@@ -54,6 +54,7 @@ for i in range(0,max_epochs):
         if i % 100 == 0:
             clear_output(wait=True)
             print(f"Episode: {i}")
+            
             
 print("Training finished.\n")
         
