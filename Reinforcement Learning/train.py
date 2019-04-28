@@ -6,14 +6,15 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 from agent import car
 from environment import Environment
+import numpy as np
 
 def main():
     # parse arguments
     parser = argparse.ArgumentParser()
     parser.add_argument('--agent', type=str, default='car', help='Which agent to use')
     parser.add_argument('--learning_rate', type=float, default=0.001, help='How quickly the algorithm tries to learn')
-    parser.add_argument('--discount', type=float, default=0.98, help='Discount for estimated future action')
-    parser.add_argument('--iterations', type=int, default=100000, help='Iteration count')
+    parser.add_argument('--discount', type=float, default=0.97, help='Discount for estimated future action')
+    parser.add_argument('--iterations', type=int, default=20000, help='Iteration count')
     FLAGS, unparsed = parser.parse_known_args()
 
     # call agent
@@ -40,8 +41,14 @@ def main():
             last_total = total_reward
 
         time.sleep(0.0001) # Avoid spamming stdout too fast!
-
+    print("Training finished.\n")
     print("Final Q-table", agent.q_table)
+    '''
+    policy = np.zeros(6)
+    for i in range(6):
+        policy[i]=np.argmax(agent.q_table[i:])
+    print(policy)
+    '''
 
 if __name__ == "__main__":
     main()
