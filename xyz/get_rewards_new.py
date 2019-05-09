@@ -7,10 +7,10 @@ Created on Fri Apr 26 02:04:40 2019
 
 import pandas as pd
 import numpy as np
-df = pd.read_excel('Trip_1.xls', sheet_name=0)
+df = pd.read_excel('trip.xlsx', sheet_name=0)
 take_theta = df['Inclination'].tolist()
 take_speed = df['Speed'].tolist()
-take_power = df['reward'].tolist()
+take_reward= df['Distance (m)'].tolist()
 #theta=[]
 a,b=0,0
 c=-1.57
@@ -21,7 +21,7 @@ final_rewards=np.zeros([32,37])
 def func(f,g):
     s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12,s13,s14,s15,s16,s17,s18,s19=[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]
     s20,s21,s22,s23,s24,s25,s26,s27,s28,s29,s30,s31,s32,s33,s34,s35,s36,s37=[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]
-    for i,j,k in zip(take_theta,take_speed,take_power):
+    for i,j,k in zip(take_theta,take_speed,take_reward):
         if(i<f and i >=g):
             if(j<1):
                 s1.append(k)
