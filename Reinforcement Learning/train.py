@@ -22,16 +22,16 @@ def main():
 
 
     # setup simulation
-    road = Environment()
+    road = Environment(63, -1.57, 1.57, 116)
     road.reset()
     total_reward = 0 # Score keeping
     last_total = 0
 
     # main loop
     for step in range(FLAGS.iterations):
-        old_state = road.rpm # Store current state
+        old_state = road.state # Store current state
         action = agent.get_next_action(old_state) # Query agent for the next action
-        new_state, reward = road.take_action(action) # Take action, get new state and reward
+        new_state, reward = road.take_action(action, old_state) # Take action, get new state and reward
         agent.update(old_state, new_state, action, reward) # Let the agent update internals
 
         total_reward += reward # Keep score
@@ -44,11 +44,10 @@ def main():
     print("Training finished.\n")
     print("Final Q-table", agent.q_table)
     '''
-    policy = np.zeros(6)
-    for i in range(6):
-        policy[i]=np.argmax(agent.q_table[i:])
+    policy = np.zeros(116)
+    for i in range(116):
+        policy[i]=np.argmax(agent.q_table[i])
     print(policy)
-    '''
-
+'''
 if __name__ == "__main__":
     main()

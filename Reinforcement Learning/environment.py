@@ -1,43 +1,19 @@
 import random
-from sa import *
+from actions import *
+from states import *
+from rewards import reward
+rew=reward()
 class Environment:
-    def __init__(self, state = 0, min_rpm =0, max_rpm = 5):
-        self.state = state
-        self.max_rpm = max_rpm
-        self.min_rpm = min_rpm
+    def __init__(self, state_length, min_state, max_state, action_length):
+        self.state_length = 63
+        self.min_state = -1.57
+        self.max_state = 1.57
+        self.action_length = 116
 
-    def take_action(self, action):
-        if (action == Current_off):
-            if (self.rpm == self.min_rpm):
-                self.rpm = self.min_rpm
-                reward = -5
-            else:
-                if self.rpm >0:
-                    self.rpm-= 1
-                if(self.rpm < 3):
-                    reward = -1
-                elif self.rpm==3:
-                    reward =10
-                else:
-                    reward = 4
-        if (action == Current_on):
-            if (self.rpm == self.max_rpm):
-                self.rpm = self.max_rpm
-                reward = -5
-            else:
-                if self.rpm <5:
-                    self.rpm+= 1
-                if(self.rpm == 3):
-                    reward = 10
-                elif(self.rpm>3):
-                    reward = -1
-                else:
-                    reward = 4
-        return self.rpm, reward
+    def take_action(self, curr_action, state):
+        reward = rew.get_reward(curr_action, state)
+        return state+1, reward
 
     def reset(self):
-        self.rpm = 0  # Reset state to zero, the beginning of dungeon
-        return self.rpm
-##o= Environment(0,0,100)
-
-#o.take_action(random.choice((Current_on,Current_off)))
+        self.state = 0 #
+        return self.state
