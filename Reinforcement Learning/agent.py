@@ -11,7 +11,7 @@ class car:
         self.exploration_delta = 0.001# Shift from exploration to explotation
 
     def get_next_action(self, state):
-        if random.uniform(0, 1) > 0.5: # 
+        if random.uniform(0, 1) > self.exploration_rate: # 
             return self.greedy_action(state)
         else:
             return self.random_action()
@@ -37,4 +37,4 @@ class car:
 
         # Finally shift our exploration_rate toward zero (less gambling)
         if self.exploration_rate > 0:
-            self.exploration_rate = self.exploration_delta - 0.2
+            self.exploration_rate = self.exploration_rate - self.exploration_delta
