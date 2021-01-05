@@ -27,7 +27,7 @@ class car:
         action=np.where(actions==curr_action)
         old_value = self.q_table[old_state][action] #pta chla?float aa rhi h teri action ki value apne action waale numpy array ko .astype(int) laga
         # What would be our best next action?
-        future_action = self.greedy_action(new_state)
+        future_action = self.get_next_action(new_state)
         # What is reward for the best next action?
         future_reward = self.q_table[new_state][future_action]
 
